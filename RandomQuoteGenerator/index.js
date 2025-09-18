@@ -35,12 +35,23 @@ const qu=[
 
 "Do not go where the path may lead, go instead where there is no path and leave a trail. — Ralph Waldo Emerson"
 ]
+
 const useIndex=new Set()
 const quElement=document.getElementById("quote")
 function generateQuote()
 {
-    const quIndex=Math.floor(Math.random()*qu.length)
+    if(useIndex.size>=qu.length)
+        {
+            useIndex.clear()
+        }
+    while(true){
+        const quIndex=Math.floor(Math.random()*qu.length)
+        if(useIndex.has(quIndex)) continue
     const q=qu[quIndex]
     quElement.innerHTML=q
+    useIndex.add(quIndex)
+    break
+    }
+    
 
 }
